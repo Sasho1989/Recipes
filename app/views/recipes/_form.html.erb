@@ -28,7 +28,17 @@
   <p>
     <%= form.fields_for :instructions do |instructions_form| %>
       <li>
-        <%= instructions_form.text_area :phase%>
+        <%= instructions_form.text_area :phase %>
+      </li>
+    <% end %>
+  </p>
+
+  <h2> Ingredients </h2>
+
+  <p>
+    <%= form.fields_for :ingredients do |ingredients_form| %>
+      <li>
+        <%= ingredients_form.text_area :component %>
       </li>
     <% end %>
   </p>

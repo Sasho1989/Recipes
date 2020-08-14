@@ -2,6 +2,8 @@
 
 <p> <%= @recipe.description %> </p>
 
+<h2> instructions </h2>
+
 <ul>
   <% @recipe.instructions.each do |i| %>
     <li>
@@ -9,5 +11,17 @@
     </li>
   <% end %>
 </ul>
+
+<h2> ingredients </h2>
+
+<ul>
+  <% @recipe.ingredients.each do |i| %>
+    <li>
+      <%= i.component %>
+    </li>
+  <% end %>
+</ul>
+
+
 
 <%= link_to "Back", root_path %>

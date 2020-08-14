@@ -23,6 +23,16 @@
     <%= form.text_area :description %>
   </p>
 
+  <h2> Instructions </h2>
+
+  <p>
+    <%= form.fields_for :instructions do |instructions_form| %>
+      <li>
+        <%= instructions_form.text_area :phase%>
+      </li>
+    <% end %>
+  </p>
+
   <p>
     <%= form.submit submit %>
   </p>

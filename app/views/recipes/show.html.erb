@@ -1,25 +1,67 @@
-<h2> <%= @recipe.title %> </h2>
+<div class="column is-7 is-offset-3">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        <%= @recipe.title %>
+      </p>
+    </header>
 
-<p> <%= @recipe.description %> </p>
+    <div class="card-content">
+      <div class="content">
+        <p><%= @recipe.description %></p>
+      </div>
+    </div>
 
-<h2> instructions </h2>
+    <footer class="card-footer">
+      <%= link_to "Back", root_path(@recipe), class: "card-footer-item" %>
 
-<ul>
-  <% @recipe.instructions.each do |i| %>
-    <li>
-      <%= i.phase %>
-    </li>
-  <% end %>
-</ul>
+      <%= link_to "Edit", edit_recipe_path(@recipe), class: "card-footer-item" %>
 
-<h2> ingredients </h2>
+      <%= link_to "Delete", recipe_path(@recipe), method: :delete,
+          data: { confirm: "Are you sure you want to delete this recipe?" },
+          class: "card-footer-item" %>
+    </footer>
+  </div>
+</div>
 
-<ul>
-  <% @recipe.ingredients.each do |i| %>
-    <li>
-      <%= i.component %>
-    </li>
-  <% end %>
-</ul>
+<div class="column is-7 is-offset-3">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Instructions
+      </p>
+    </header>
 
-<%= link_to "Back", root_path %>
+    <div class="card-content">
+      <div class="content">
+        <% @recipe.instructions.each do |i| %>
+          <li>
+            <%= i.phase %>
+          </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="column is-7 is-offset-3">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Ingredients
+      </p>
+    </header>
+
+    <div class="card-content">
+      <div class="content">
+        <% @recipe.ingredients.each do |i| %>
+          <li>
+            <%= i.component %>
+          </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

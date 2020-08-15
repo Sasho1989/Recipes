@@ -1,6 +1,9 @@
-<h2> Edit Recipe </h2>
+<%= render 'form',
+  recipe: @recipe,
+  submit: 'Update Recipe',
+  cancel_path: recipe_path(@recipe),
+  heading: 'Edit Recipe' %>
 
-<%= render 'form', recipe: @recipe, submit: 'Update Recipe' %>
 
-<%= link_to 'Back', recipes_path %>
+
 

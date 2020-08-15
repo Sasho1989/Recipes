@@ -1,49 +1,101 @@
-<% if @recipe.errors.any? %>
-<div id="error_explanation">
-  <h2>
-    <%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:
-  </h2>
+<% if recipe.errors.any? %>
+  <div class="column is-6 is-offset-3">
+    <article class="message is-danger">
+      <div class="message-body">
+        <p>
+          <%= pluralize(recipe.errors.count, "error") %>
+          prohibited this recipe from being saved:</p>
+        <br>
+        <p>
+        <% recipe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </p>
+      </div>
+    </article>
+  </div>
+<% end %>
 
-  <ul>
-    <% @recipe.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-6 is-offset-3">
+      <div class="content is-size-3">
+        <h1><%= heading %></h1>
+      </div>
+    </div>
+
+    <div class="column is-6 is-offset-3">
+      <%= form_with model: @recipe, local: true do |form| %>
+        <div class="field">
+          <%= form.label :title, class: "label" %>
+          <div class="control">
+            <%= form.text_field :title, class: "input", placeholder: "Title" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :description, class: "label" %>
+
+          <div class="control">
+            <%= form.text_area :description, class: "textarea", placeholder: 'description' %>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="columns is-multiline">
+            <div class="column is-6 is-offset-1">
+              <div class="content is-size-6">
+                <h2> Instructions </h2>
+            </div>
+          </div>
+
+          <div class="column is-8 is-offset-1">
+            <article class="media">
+              <div class="media-content">
+                <%= form.fields_for :instructions do |instructions_form| %>
+                  <div class="field">
+                    <p class="control">
+                      <%= instructions_form.text_area :phase , class: "textarea", placeholder: "steps" %>
+                    </p>
+                  </div>
+                <% end %>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="columns is-multiline">
+            <div class="column is-6 is-offset-1">
+              <div class="content is-size-6">
+                <h2> Ingredients </h2>
+            </div>
+          </div>
+
+          <div class="column is-6 is-offset-1">
+            <article class="media">
+              <div class="media-content">
+                <%= form.fields_for :ingredients do |ingredients_form| %>
+                  <div class="field">
+                    <p class="control">
+                      <%= ingredients_form.text_area :component , class: "textarea", placeholder: "ingredient" %>
+                    </p>
+                  </div>
+                <% end %>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="level-left">
+          <div class="level-item">
+            <%= form.submit submit, class: 'button is-warning' %>
+          </div>
+          <div class="level-item">
+            <%= link_to "Cancel", cancel_path, class: 'button is-light' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
-
-<%= form_with model: @recipe, local: true do |form| %>
-  <p>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </p>
-
-  <p>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </p>
-
-  <h2> Instructions </h2>
-
-  <p>
-    <%= form.fields_for :instructions do |instructions_form| %>
-      <li>
-        <%= instructions_form.text_area :phase %>
-      </li>
-    <% end %>
-  </p>
-
-  <h2> Ingredients </h2>
-
-  <p>
-    <%= form.fields_for :ingredients do |ingredients_form| %>
-      <li>
-        <%= ingredients_form.text_area :component %>
-      </li>
-    <% end %>
-  </p>
-
-  <p>
-    <%= form.submit submit %>
-  </p>
-<% end %>

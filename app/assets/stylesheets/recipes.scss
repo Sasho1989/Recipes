@@ -1,3 +1,19 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.field_with_errors input {
+  border-color: #f146;
+}
+
+.card-header {
+  background-color: rgb(248, 178, 48);
+}
+
+.card-content {
+  background-color: rgba(255, 166, 0, 0.445);
+}
+
+.card-footer {
+  background-color: rgb(248, 178, 48);
+}

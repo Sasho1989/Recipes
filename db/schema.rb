@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_16_200921) do
+ActiveRecord::Schema.define(version: 2020_08_16_210200) do
 
   create_table "ingredients", force: :cascade do |t|
     t.text "component"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_08_16_200921) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "ingredients", "recipes"

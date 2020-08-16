@@ -27,10 +27,14 @@
         <% @recipe.instructions.each do |i| %>
           <li>
             <%= i.phase %>
-              <%= link_to 'Edit', edit_recipe_instruction_path(i.recipe, i) %>
-              <%= link_to 'Delete', recipe_instruction_path(i.recipe, i),
-              method: :delete,
-              data: { confirm: 'Are you sure you want to delete this recipe instruction' } %>
+              <%= link_to edit_recipe_instruction_path(i.recipe, i) do %>
+                <span class="icon is-small"><i class="fas fa-edit"></i></span>
+              <% end %>
+              <%= link_to recipe_instruction_path(i.recipe, i),
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete this recipe instruction' } do %>
+                <span class="icon is-small"><i class="fas fa-trash-alt"></i></span>
+              <% end %>
           </li>
         <% end %>
       </div>
@@ -51,10 +55,14 @@
         <% @recipe.ingredients.each do |i| %>
           <li>
             <%= i.component %>
-            <%= link_to 'Edit', edit_recipe_ingredient_path(i.recipe, i) %>
-              <%= link_to 'Delete', recipe_ingredient_path(i.recipe, i),
+            <%= link_to edit_recipe_ingredient_path(i.recipe, i) do %>
+              <span class="icon is-small"><i class="fas fa-edit"></i></span>
+            <% end %>
+            <%= link_to recipe_ingredient_path(i.recipe, i),
               method: :delete,
-              data: { confirm: 'Are you sure you want to delete this recipe ingredient' } %>
+              data: { confirm: 'Are you sure you want to delete this recipe ingredient' } do %>
+              <span class="icon is-small"><i class="fas fa-trash-alt"></i></span>
+            <% end %>
           </li>
         <% end %>
       </div>

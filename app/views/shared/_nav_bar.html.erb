@@ -4,7 +4,7 @@
       <a class="navbar-item" >
         <img src="https://svgsilh.com/svg/303194.svg" width="100" height="100">
       </a>
-        <%= link_to "Recipes", root_path, class: "navbar-item is-size-1" %>
+        <%= link_to "Recipes", root_path, class: "navbar-item is-size-2" %>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
@@ -17,7 +17,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <%= link_to "Create Recipe", new_recipe_path, class: "button is-light has-text-weight-bold" %>
+            <% if logged_in? %>
+              <%= link_to "Create Recipe", new_recipe_path, class: "button is-light" %>
+              <%= link_to "Log Out", logout_path, method: :delete, class: "button is-light" %>
+            <% else %>
+              <%= link_to "Log In", login_path, class: "button is-light" %>
+              <%= link_to "Sign Up", users_signup_path, class: "button is-light" %>
+            <% end %>
           </div>
         </div>
       </div>
